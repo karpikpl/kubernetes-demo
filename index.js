@@ -6,7 +6,6 @@ const os = require('os');
 
 // Create a server with a host and port
 const server = Hapi.server({
-    host: 'localhost',
     port: 8000
 });
 
@@ -16,6 +15,7 @@ server.route({
     path: '/hello',
     handler: function (request, h) {
 
+        console.log('Hello');
         return `hello world from ${Package.name} version ${Package.version} running on ${os.hostname()}`;
     }
 });

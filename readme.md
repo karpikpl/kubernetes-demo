@@ -1,6 +1,6 @@
 # Docker / Kubernetes demo
 
-## Part 1
+## Part 1 - nodejs
 1. Initialize
 ```
 git init
@@ -19,7 +19,6 @@ const os = require('os');
 
 // Create a server with a host and port
 const server = Hapi.server({
-    host: 'localhost',
     port: 8000
 });
 
