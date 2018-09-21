@@ -91,14 +91,33 @@ CMD [ "node", "index.js" ]
 `docker build . -t devops-demo`
 
 4. Open dashboard
-`minikube dashboard --url`
+`minikube dashboard`
 
 5. Deploy
-`kubectl run devops --image=devops-demo --replicas=1 --port=8000 --hostport=8001 --image-pull-policy=Never`
+`kubectl run devops --image=devops-demo --replicas=1 --port=8000 --image-pull-policy=Never`
 
 6. View
 `kubectl get deployments`
 `kubectl describe deployment devops`
 
-7. Call
-`curl 192.168.99.100:8001/hello`
+7. Create service
+`kubectl expose deployment devops --type=LoadBalancer`
+
+8. Expose service on minikube
+`minikube service devops`
+
+9. Get minikube IP and service port
+```bash
+export PORT=$(kubectl get svc devops -o go-template='{{range.spec.ports}}{{if .nodePort}}{{.nodePort}}{{"\n"}}{{end}}{{end}}')
+export MINIKUBE_IP=$(minikube ip)
+```
+
+10. Call your service
+`curl $MINIKUBE_IP:$PORT/hello`
+
+## Part 4 - updating running application
+1. Modify `package.json` by changing the version
+2. Build new docker image
+`docker build . -t devops-demo:v2`
+3. Update image of the running deployment
+`kubectl set image deployments/devops devops=devops-demo:v2`
