@@ -2,7 +2,7 @@
 
 ## Part 1 - nodejs
 1. Initialize
-```
+```bash
 git init
 yarn init
 yarn add hapi
@@ -10,7 +10,7 @@ yarn add hapi
 
 2. code
 add `index.js` with
-```
+```js
 'use strict';
 
 const Hapi = require('hapi');
@@ -57,7 +57,7 @@ Run `node index.js`
 
 ## Part 2 - Docker
 1. Add dockerfile
-```
+```dockerfile
 FROM node:8
 
 # Create app directory
