@@ -1,16 +1,3 @@
-# Docker / Kubernetes demo
-
-## Part 1
-1. Initialize
-```
-git init
-yarn init
-yarn add hapi
-```
-
-2. code
-add `index.js` with
-```
 'use strict';
 
 const Hapi = require('hapi');
@@ -47,10 +34,3 @@ async function start() {
 };
 
 start();
-```
-
-3. Start
-Run `node index.js`
-
-4. Call
-`curl .:8000/hello`
