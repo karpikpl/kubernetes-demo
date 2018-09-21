@@ -79,3 +79,26 @@ CMD [ "node", "index.js" ]
 
 3. Run image
 `docker run --rm --name devops -d -p 8000:8000 devops-demo`
+
+## Part 3 Kubernetes
+1. Start minikube
+`minikube start`
+
+2. Switch docker to minikube
+`eval $(minikube docker-env)`
+
+3. Build the image
+`docker build . -t devops-demo`
+
+4. Open dashboard
+`minikube dashboard --url`
+
+5. Deploy
+`kubectl run devops --image=devops-demo --replicas=1 --port=8000 --hostport=8001 --image-pull-policy=Never`
+
+6. View
+`kubectl get deployments`
+`kubectl describe deployment devops`
+
+7. Call
+`curl 192.168.99.100:8001/hello`
