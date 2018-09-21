@@ -2,6 +2,10 @@
   "name": "devops-demo",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "build": "docker build . -t devops-demo",
+    "run-docker": "docker run --rm --name devops -it -p 8000:8000 devops-demo"  
+  },
   "license": "MIT",
   "dependencies": {
     "hapi": "^17.5.4"

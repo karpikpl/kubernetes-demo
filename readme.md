@@ -53,3 +53,29 @@ Run `node index.js`
 
 4. Call
 `curl .:8000/hello`
+
+
+## Part 2 - Docker
+1. Add dockerfile
+```
+FROM node:8
+
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Bundle app source
+COPY . /usr/src/app
+
+#RUN npm i yarn -g
+RUN yarn
+
+EXPOSE 8000
+CMD [ "node", "index.js" ]
+```
+
+2. Build image
+`docker build . -t devops-demo`
+
+3. Run image
+`docker run --rm --name devops -d -p 8000:8000 devops-demo`
